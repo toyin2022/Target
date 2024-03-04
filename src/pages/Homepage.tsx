@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import { setLogout } from "../stateManager/userSlice";
+import { useRef } from "react";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Hero } from "../components/Hero";
 import TaskContainer from "../components/taskComponent/TaskContainer";
@@ -13,7 +12,6 @@ const Homepage = () => {
   const scrollToTaskContainer = () => {
     if (containerRef.current) {
       containerRef.current.scrollIntoView();
-      // containerRef.current.scrollTo({ behavior: "smooth", top: 10 });
     }
   };
 

@@ -1,6 +1,4 @@
 import { cn } from "../../../util/cn";
-import clsx from "clsx";
-import React from "react";
 
 export const Meteors = ({
   number,
@@ -26,7 +24,10 @@ export const Meteors = ({
             animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
             animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
           }}
-        ></span>
+        >
+          {" "}
+          {el} {console.log(el)}
+        </span>
       ))}
     </>
   );
