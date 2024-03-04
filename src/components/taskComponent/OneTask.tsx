@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "../../apiConnection/axios";
+import { Skeleton } from "@/components/ui/skeleton";
 import { setTask } from "@/stateManager/taskSlice";
+import { useEffect, useState } from "react";
+import { RiDeleteBin3Line } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "sonner";
+import axios from "../../apiConnection/axios";
+import { Button } from "../ui/button";
 import { Spotlight } from "./spotlight/Spotlight";
 import {
   GlowingStarsBackgroundCard,
   GlowingStarsDescription,
   GlowingStarsTitle,
 } from "./starCard/StarBg";
-import { Button } from "../ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { RiDeleteBin3Line } from "react-icons/ri";
-import { toast } from "sonner";
 
 interface TaskInterface {
   _id?: string | number;
@@ -47,7 +47,7 @@ const OneTask = () => {
   const handleDeleteTask = (id: string) => {
     const check = confirm("are you sure you want to delete this task");
     if (check) {
-      axios.delete(`/tasks/${id}`).then((res) => {
+      axios.delete(`/tasks/${id}`).then(() => {
         toast("task deleted successfully");
         navigate("/home");
       });

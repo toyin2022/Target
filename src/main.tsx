@@ -1,11 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { Toaster } from "@/components/ui/sonner";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { store, persistor } from "./stateManager/index.ts";
 import App from "./App.tsx";
-import { createRoot } from "react-dom/client";
-import { Toaster } from "@/components/ui/sonner";
+import { persistor, store } from "./stateManager/index.ts";
 
 import "./index.css";
 

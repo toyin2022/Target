@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "./Navbar";
-import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import mygif from "../assets/gif.gif";
-import { useLocation } from "react-router-dom";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const Layout = () => {
   const [isLoading, setIsLoading] = useState(true);

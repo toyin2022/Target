@@ -1,11 +1,10 @@
-import { LampContainer } from "./Lamp";
 import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { LampContainer } from "./Lamp";
 import { SparklesCore } from "./Particles";
 import { TextGenerateEffect } from "./TextRevealHero";
 
 export function Hero({ scrollToTaskContainer }: any) {
-  const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user);
   return (
     <div className="min-h-[70vh] bg-slate-950 text-center">

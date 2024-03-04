@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import { UseDispatch, useDispatch } from "react-redux";
+import { Formik } from "formik";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  Formik,
-  //   FormikHelpers,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps,
-} from "formik";
-import { object, string, number, date, InferType } from "yup";
-import axios from "../apiConnection/axios";
 import { toast } from "react-toastify";
+import { object, string } from "yup";
+import axios from "../apiConnection/axios";
 import { setLogin } from "../stateManager/userSlice";
 
 interface LoginInitialInterface {
@@ -56,13 +49,9 @@ const Auth = () => {
     values: any,
     { setSubmitting, resetForm }: any
   ) => {
-    // let formData = await new FormData();
-    // for (const property of Object.keys(values)) {
-    //   await formData.append(property, values[property]);
-    // }
     axios
       .post("/auth/register", values)
-      .then((res) => {
+      .then(() => {
         resetForm();
         toast("Registration successful!", {
           autoClose: 2000,
@@ -77,8 +66,7 @@ const Auth = () => {
         setSubmitting(false);
       });
   };
-  const handleLogin = (values: any, { setSubmitting, resetForm }: any) => {
-    // console.log({ login: values });
+  const handleLogin = (values: any, { resetForm }: any) => {
     axios
       .post("/auth/login", values)
       .then((res) => {
@@ -94,6 +82,7 @@ const Auth = () => {
       })
       .catch((err) => {
         toast.error("Something went wrong try again");
+        console.log(err);
       });
   };
 
@@ -118,11 +107,9 @@ const Auth = () => {
           handleBlur,
           handleSubmit,
           handleChange,
-          touched,
+
           values,
           resetForm,
-          setFieldValue,
-          errors,
         }) => {
           const switchPages = () => {
             setPage("register");

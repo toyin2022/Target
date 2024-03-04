@@ -1,12 +1,11 @@
-import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./components/Layout";
-import Homepage from "./pages/Homepage";
-import UpdateProfile from "./pages/UpdateProfile";
-import Auth from "./pages/Auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Layout from "./components/Layout";
 import OneTask from "./components/taskComponent/OneTask";
+import Auth from "./pages/Auth";
+import Homepage from "./pages/Homepage";
+import UpdateProfile from "./pages/UpdateProfile";
 
 const router = createBrowserRouter([
   {

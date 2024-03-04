@@ -1,6 +1,5 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { setLogout } from "../stateManager/userSlice";
 const Navbar = () => {
   const dispatch = useDispatch();

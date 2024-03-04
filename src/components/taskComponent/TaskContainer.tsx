@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import axios from "../../apiConnection/axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setTask, setTasks } from "@/stateManager/taskSlice";
-import { useNavigate } from "react-router-dom";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { setTask, setTasks } from "@/stateManager/taskSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "../../apiConnection/axios";
 
-import { FiFilter } from "react-icons/fi";
-import { Button } from "../ui/button";
-import { toast } from "sonner";
 import {
   Sheet,
   SheetClose,
@@ -24,8 +21,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Meteors } from "./meator/Meators";
 import { Loader2 } from "lucide-react";
+import { FiFilter } from "react-icons/fi";
+import { toast } from "sonner";
+import { Button } from "../ui/button";
+import { Meteors } from "./meator/Meators";
 
 interface TaskContainerProps {
   forwardedRef: React.RefObject<HTMLDivElement>;
@@ -59,7 +59,7 @@ const TaskContainer: React.FC<TaskContainerProps> = ({ forwardedRef }) => {
   const [btnLoad, setBtnLoad] = useState(false);
   const [editted, setEditted] = useState(false);
   const [complete, setcomplete] = useState([]);
-  const [deleteForever, setdeleteForever] = useState(false);
+
   const [tab, settab] = useState(false);
 
   useEffect(() => {
@@ -72,16 +72,7 @@ const TaskContainer: React.FC<TaskContainerProps> = ({ forwardedRef }) => {
         task.title.toLowerCase().includes(searchTask.toLowerCase())
       );
     setcomplete(completedTasks);
-  }, [
-    typeFilter,
-    tab,
-    dayFilter,
-    newTask,
-    deleteTask,
-    btnLoad,
-    editted,
-    deleteForever,
-  ]);
+  }, [typeFilter, tab, dayFilter, newTask, deleteTask, btnLoad, editted]);
 
   useEffect(() => {
     const filtered = tasks
@@ -119,7 +110,7 @@ const TaskContainer: React.FC<TaskContainerProps> = ({ forwardedRef }) => {
           type: def,
           time: `${currentHours}:${currentMinutes}`,
         })
-        .then((res) => {
+        .then(() => {
           setnewTask(!newTask);
           settitle("");
           setdetails("");
@@ -145,11 +136,10 @@ const TaskContainer: React.FC<TaskContainerProps> = ({ forwardedRef }) => {
         task: editDetails,
         type: def,
       })
-      .then((res) => {
+      .then(() => {
         toast("task updated, close modal");
         setEditted(!editted);
         setEditTitle("");
-        //   setTitle(res.data.title);
         setEditDetails("");
       });
   };
@@ -178,7 +168,7 @@ const TaskContainer: React.FC<TaskContainerProps> = ({ forwardedRef }) => {
   const handleDeleteTask = (id: string) => {
     const check = confirm("are you sure you want to delete this task");
     if (check) {
-      axios.delete(`/tasks/${id}`).then((res) => {
+      axios.delete(`/tasks/${id}`).then(() => {
         settab(!tab);
         toast("task deleted successfully");
       });
